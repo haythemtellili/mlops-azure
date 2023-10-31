@@ -1,0 +1,38 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: data-drift
+experiment_name: credit-card-default
+description: Pipeline to measure data drift between a reference dataset and target dataset.
+tags:
+  project: credit_card_default
+  job_type: data_drift
+
+inputs:
+  reference_data:
+    type: mltable
+    path: azureml:credit-card-default-uci-curated-ds@latest
+  target_data:
+    type: mltable
+    path: azureml:credit-card-default-online-inference-ds@latest
+
+settings:
+  default_datastore: azureml:workspaceblobstore
+  default_compute: azureml:haythem
+  continue_on_step_failure: false
+
+jobs:
+  data_drift_step:
+    type: command
+    environment_variables:
+      APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=c664395e-76dd-4f7c-883e-0b09c1c069a1
+    inputs: 
+      reference_data: ${{parent.inputs.reference_data}}
+      target_data: ${{parent.inputs.target_data}}
+      model_name: credit-card-default
+    code: ../../src/
+    environment: azureml:credit-card-default-drift@latest
+    command: >-
+      python drift.py 
+      --model_name ${{inputs.model_name}} 
+      --reference_data ${{inputs.reference_data}}
+      --target_data ${{inputs.target_data}}
