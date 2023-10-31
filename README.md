@@ -1,4 +1,4 @@
-# Azure Machine Learning Operations (Azure ML Ops)
+# Azure Machine Learning Operations (Azure MLOps)
 
 This repository contains instructions and scripts for managing Azure ML Ops workflows.
 
