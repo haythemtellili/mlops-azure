@@ -77,8 +77,7 @@ az ml online-endpoint create -f endpoints/online/endpoint.yml
 
 
 ## Next Steps:
-- Implement Git Integration
 - Configure Environment Variables in YML Files
 - Set Up AzureML Compute and Enable Access to Blob Storage (Consider Managed Identities)
 - Choose Between GitHub Actions or Azure DevOps for CI/CD
-5. Review and Define Alerting and Monitoring Rules Using Application Insights
+- Review and Define Alerting and Monitoring Rules Using Application Insights
