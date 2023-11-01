@@ -4,63 +4,66 @@ This repository contains instructions and scripts for managing Azure ML Ops work
 
 ## Environment Setup
 
-1. Create training environment:
+Create training environment:
  ```
 az ml environment create -f environments/train.yml
  ```
 
-2. Create scoring environment:
+Create scoring environment:
  ```
 az ml environment create -f environments/score.yml
  ```
 
-3. Create drift environment:
+Create drift environment:
  ```
 az ml environment create -f environments/drift.yml
  ```
 
 ## Data Management
 
-4. Create curated data:
+Create curated data:
  ```
 az ml data create -f data/curated.yml
  ```
-5. Create online inference data:
+Create online inference data:
  ```
 az ml data create -f data/inference-online.yml
  ```
-## Model Training and Inference
+## Model Training
 
-6. Train models using pipelines:
+Train models using pipelines:
  ```
 az ml job create -f jobs/pipelines/train_models.yml
  ```
 
-7. Export data:
- ```
-az ml job create -f jobs/pipelines/data_export.yml
- ```
-8. Monitor data drift:
- ```
-az ml job create -f jobs/pipelines/data_drift.yml
- ```
+## Model Deployment
 
-9. Create online endpoint:
+Create online endpoint:
  ```
 az ml online-endpoint create -f endpoints/online/endpoint.yml
  ```
-10. Deploy online endpoint with all traffic:
+Deploy online endpoint with all traffic:
  ```
  az ml online-deployment create -f endpoints/online/deployment.yml --all-traffic
  ```
 
-11. Invoke the online endpoint:
+Invoke the online endpoint:
  ```
  ENDPOINT_NAME=credit-card-default-oe
  az ml online-endpoint invoke --name $ENDPOINT_NAME --request-file endpoints/online/sample.json
  ```
 
-12. Schedule data export and drift monitoring:
+## Model Monitoring
+
+Export data:
+ ```
+az ml job create -f jobs/pipelines/data_export.yml
+ ```
+Monitor data drift:
+ ```
+az ml job create -f jobs/pipelines/data_drift.yml
+ ```
+Schedule data export and drift monitoring:
  ```
  az ml schedule create -f jobs/schedules/data_export.yml
  ```
@@ -70,7 +73,7 @@ az ml online-endpoint create -f endpoints/online/endpoint.yml
 
 ## Cleanup
 
-13. Delete online endpoint:
+Delete online endpoint:
  ```
  az ml online-endpoint delete --name credit-card-default-oe -y
  ```
@@ -78,6 +81,5 @@ az ml online-endpoint create -f endpoints/online/endpoint.yml
 
 ## Next Steps:
 - Configure Environment Variables in YML Files
-- Set Up AzureML Compute and Enable Access to Blob Storage (Consider Managed Identities)
-- Choose Between GitHub Actions or Azure DevOps for CI/CD
 - Review and Define Alerting and Monitoring Rules Using Application Insights
+- Choose Between GitHub Actions or Azure DevOps for CI/CD
