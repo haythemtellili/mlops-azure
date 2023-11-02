@@ -1,14 +1,13 @@
-# Copyright (c) 2021 Microsoft
-# 
-# This software is released under the MIT License.
-# https://opensource.org/licenses/MIT
-
 variable "resource_group" {
-  default = "aml-terraform-demo-2"
+  default = "aml-terraform-demo"
+}
+
+variable "environment" {
+  type    = string
 }
 
 variable "workspace_display_name" {
-  default = "aml-terraform-demo-2"
+  default = "aml-terraform-demo"
 }
 
 variable "location" {
@@ -24,4 +23,14 @@ resource "random_string" "postfix" {
   length = 6
   special = false
   upper = false
+}
+
+variable "cluster_name" {
+  type = string
+  default = "cpu-cluster"
+}
+
+variable "compute_name" {
+  type = string
+  default = "haythem-compute"
 }
