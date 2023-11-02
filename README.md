@@ -12,7 +12,7 @@ Ensure that you have the following prerequisites:
 Follow these steps to prepare the required resources for this Project:
 
 ### Infrastructure Preparation:
-Create a file named .env in the project root directory and define the following environment variables:
+Create a file named .env in the terraform directory and define the following environment variables:
 
 ```shell
 LOCATION="Your Azure Region"
@@ -30,27 +30,20 @@ Create an Azure Service Principal:
  ```
 make create-service-principal
  ```
-
+#### Staging Environment:
 Initialize Terraform (Staging):
  ```
 make init-staging
  ```
-
-Initialize Terraform (Staging):
+Plan Terraform (Staging):
  ```
 make plan-staging
  ```
-
-Plan Terraform (Staging):
+Apply Terraform (Staging):
  ```
 make apply-staging
  ```
-
-Apply Terraform (Staging):
- ```
-make init-staging
- ```
-
+#### Production Environment:
 Initialize Terraform (Production):
  ```
 make init-prod
@@ -62,7 +55,6 @@ make plan-prod
 Apply Terraform (Production):
  ```
 make apply-prod
-
  ```
 ## MLOps with AzureML
 This section outlines the MLOps processes with AzureML, covering various aspects from environment setup to data management,
