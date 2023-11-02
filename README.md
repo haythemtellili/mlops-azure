@@ -9,12 +9,10 @@ Ensure that you have the following prerequisites:
 - [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 ## Getting Started
 
-Follow these steps to prepare the required resources using the Makefile:
+Follow these steps to prepare the required resources for this Project:
 
-```shell
-# Environment Configuration:
+### Environment Configuration:
 Create a file named .env in the project root directory and define the following environment variables:
-```
 
 ```shell
 LOCATION="Your Azure Region"
