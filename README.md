@@ -11,7 +11,7 @@ Ensure that you have the following prerequisites:
 
 Follow these steps to prepare the required resources for this Project:
 
-### Environment Configuration:
+### Infrastructure Preparation:
 Create a file named .env in the project root directory and define the following environment variables:
 
 ```shell
@@ -20,20 +20,49 @@ RESOURCE_GROUP_NAME="Your Resource Group Name"
 SERVICE_PRINCIPAL_NAME="Your Service Principal Name"
 SUBSCRIPTION_ID="Your Azure Subscription ID"
 ```
-## Infrastructure Using Terraform
 
-Initialize Terraform:
+Create an Azure Resource Group:
  ```
-terraform init
+make create-resource-group
  ```
 
-Generate a Terraform plan to preview changes:
+Create an Azure Service Principal:
  ```
-terraform plan
+make create-service-principal
  ```
-Apply Terraform Changes:
+
+Initialize Terraform (Staging):
  ```
-terraform apply
+make init-staging
+ ```
+
+Initialize Terraform (Staging):
+ ```
+make plan-staging
+ ```
+
+Plan Terraform (Staging):
+ ```
+make apply-staging
+ ```
+
+Apply Terraform (Staging):
+ ```
+make init-staging
+ ```
+
+Initialize Terraform (Production):
+ ```
+make init-prod
+ ```
+Plan Terraform (Production):
+ ```
+make plan-prod
+ ```
+Apply Terraform (Production):
+ ```
+make apply-prod
+
  ```
 
 ## Environment Setup
