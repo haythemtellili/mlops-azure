@@ -64,8 +64,11 @@ Apply Terraform (Production):
 make apply-prod
 
  ```
+## MLOps with AzureML
+This section outlines the MLOps processes with AzureML, covering various aspects from environment setup to data management,
+model training, deployment and monitoring to facilitate end-to-end machine learning operations.
 
-## Environment Setup
+### Environment Setup
 
 Create training environment:
  ```
@@ -82,7 +85,7 @@ Create drift environment:
 az ml environment create -f environments/drift.yml
  ```
 
-## Data Management
+### Data Management
 
 Create curated data:
  ```
@@ -92,14 +95,14 @@ Create online inference data:
  ```
 az ml data create -f data/inference-online.yml
  ```
-## Model Training
+### Model Training
 
 Train models using pipelines:
  ```
 az ml job create -f jobs/pipelines/train_models.yml
  ```
 
-## Model Deployment
+### Model Deployment
 
 Create online endpoint:
  ```
@@ -116,7 +119,7 @@ Invoke the online endpoint:
  az ml online-endpoint invoke --name $ENDPOINT_NAME --request-file endpoints/online/sample.json
  ```
 
-## Model Monitoring
+### Model Monitoring
 
 Export data:
  ```
@@ -134,7 +137,7 @@ Schedule data export and drift monitoring:
  az ml schedule create -f jobs/schedules/data_drift.yml
  ```
 
-## Cleanup
+### Cleanup
 
 Delete online endpoint:
  ```
