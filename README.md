@@ -146,7 +146,5 @@ Delete online endpoint:
 
 
 ## Next Steps:
-- Configure Environment Variables in YML Files
-- terraform modules
 - Review and Define Alerting and Monitoring Rules Using Application Insights
 - Choose Between GitHub Actions or Azure DevOps for CI/CD
