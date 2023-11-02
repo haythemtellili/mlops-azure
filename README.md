@@ -1,6 +1,21 @@
 # Azure Machine Learning Operations (Azure MLOps)
 
-This repository contains instructions and scripts for managing Azure ML Ops workflows.
+This repository contains instructions and scripts for managing Azure MLOps workflows.
+## Infrastructure Using Terraform
+
+Initialize Terraform:
+ ```
+terraform init
+ ```
+
+Generate a Terraform plan to preview changes:
+ ```
+terraform plan
+ ```
+Apply Terraform Changes:
+ ```
+terraform apply
+ ```
 
 ## Environment Setup
 
