@@ -1,6 +1,26 @@
 # Azure Machine Learning Operations (Azure MLOps)
 
 This repository contains instructions and scripts for managing Azure MLOps workflows.
+## Prerequisites
+
+Ensure that you have the following prerequisites:
+
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+## Getting Started
+
+Follow these steps to prepare the required resources using the Makefile:
+
+```shell
+# Environment Configuration:
+Create a file named .env in the project root directory and define the following environment variables:
+
+```shell
+LOCATION="Your Azure Region"
+RESOURCE_GROUP_NAME="Your Resource Group Name"
+SERVICE_PRINCIPAL_NAME="Your Service Principal Name"
+SUBSCRIPTION_ID="Your Azure Subscription ID"
+
 ## Infrastructure Using Terraform
 
 Initialize Terraform:
