@@ -9,25 +9,25 @@ create-service-principal:
 
 # Target: init-staging
 init-staging:
-	cd environments/staging && terraform init
+	cd terraform/environments/staging && terraform init
 
 # Target: plan-staging
 plan-staging:
-	cd environments/staging && terraform plan
+	cd terraform/environments/staging && terraform plan
 
 # Target: apply-staging
 apply-staging:
-	cd environments/staging && terraform apply
+	cd terraform/environments/staging && terraform apply
 
 # Target: init-prod
 init-prod:
-	cd environments/prod && terraform init
+	cd terraform/environments/prod && terraform init
 
 # Target: plan-prod
 plan-prod:
-	cd environments/prod && terraform plan
+	cd terraform/environments/prod && terraform plan
 
 # Target: apply-prod
 apply-prod:
-	cd environments/prod && terraform apply
+	cd terraform/environments/prod && terraform apply
 

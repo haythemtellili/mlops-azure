@@ -12,7 +12,7 @@ Ensure that you have the following prerequisites:
 Follow these steps to prepare the required resources for this Project:
 
 ### Infrastructure Preparation:
-Create a file named .env in the terraform directory and define the following environment variables:
+Create a file named .env in the root directory and define the following environment variables:
 
 ```shell
 LOCATION="Your Azure Region"
