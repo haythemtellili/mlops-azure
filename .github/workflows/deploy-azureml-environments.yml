@@ -1,0 +1,52 @@
+name: Build Environments
+
+on:
+  workflow_dispatch: # For demonstration purposes
+
+  # push: # Runs workflow when you push a commit or tag
+  #   branches:
+  #     - main
+
+jobs:
+  register-environments-registry:
+    name: Register Environments in Registry
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Staging
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: "./.github/templates/install-dependencies"
+        with:
+          workspace_resource_group: ${{ vars.RESOURCE_GROUP }}
+          workspace_name: mlw${{ vars.WORKLOAD_IDENTIFIER }}${{ vars.RESOURCE_INSTANCE }}
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Register training environment
+        uses: "./.github/templates/create-environment"
+        with:
+          environment_file: ./environments/train.yml
+          target: "registry"
+          registry_name: mlr${{ vars.WORKLOAD_IDENTIFIER }}
+
+      - name: Register scoring environment
+        uses: "./.github/templates/create-environment"
+        with:
+          environment_file: ./environments/score.yml
+          target: "registry"
+          registry_name: mlr${{ vars.WORKLOAD_IDENTIFIER }}
+
+      - name: Register drift environment
+        uses: "./.github/templates/create-environment"
+        with:
+          environment_file: ./environments/drift.yml
+          target: "registry"
+          registry_name: mlr${{ vars.WORKLOAD_IDENTIFIER }}
