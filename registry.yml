@@ -1,0 +1,6 @@
+name: mlramlxy6zhyf1
+tags:
+  description: Basic registry to share assets between staging and production workspaces
+location: Poland Central
+replication_locations:
+  - location: Poland Central
