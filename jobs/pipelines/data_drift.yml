@@ -24,7 +24,7 @@ jobs:
   data_drift_step:
     type: command
     environment_variables:
-      APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=c664395e-76dd-4f7c-883e-0b09c1c069a1
+      APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=${INSTRUMENTATION_KEY}
     inputs: 
       reference_data: ${{parent.inputs.reference_data}}
       target_data: ${{parent.inputs.target_data}}

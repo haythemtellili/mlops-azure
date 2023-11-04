@@ -18,9 +18,9 @@ jobs:
   data_export_step:
     type: command
     inputs:
-      model_name: credit-card-default
-      model_version: "1"
-      log_analytics_workspace_id: 00375ea3-aacf-41b6-a8cd-605704a5b3b5
+      model_name: ${MODEL_NAME}
+      model_version: ${MODEL_VERSION}
+      log_analytics_workspace_id: ${LOG_ANALYTICS_WORKSPACE_ID}
       number_of_previous_days: 3
     outputs:
       prepared_data_dir: ${{parent.outputs.prepared_data_dir}}
