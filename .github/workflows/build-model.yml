@@ -35,16 +35,16 @@ jobs:
 
       - name: Get enviroment from registry
         run: |
-          ENVIRONMENT_NAME=$(yq '.name' < core/environments/train.yml)
+          ENVIRONMENT_NAME=$(yq '.name' < environments/train.yml)
           ENVIRONMENT_VERSION=$(yq '.version' < core/environments/train.yml)
           echo "ENVIRONMENT_TRAINING=${ENVIRONMENT_NAME}/versions/${ENVIRONMENT_VERSION}" >> $GITHUB_ENV
 
       - name: Overwrite environment parameter for job
         run: |
-          yq -i '.jobs.prepare_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' core/jobs/pipelines/train_model.yml
-          yq -i '.jobs.data_quality_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' core/jobs/pipelines/train_model.yml
-          yq -i '.jobs.register_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' core/jobs/pipelines/train_model.yml
-          yq -i '.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' core/jobs/components/sweep_trial.yml
+          yq -i '.jobs.prepare_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
+          yq -i '.jobs.data_quality_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
+          yq -i '.jobs.register_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
+          yq -i '.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' ./jobs/components/sweep_trial.yml
 
       - name: Run pipeline job to train model
         uses: "./.github/templates/run-job"
@@ -53,7 +53,7 @@ jobs:
 
       - name: Set model name and version
         run: |
-          MODEL_NAME=$(yq '.jobs.register_step.inputs.model_name' < core/jobs/pipelines/train_model.yml)
+          MODEL_NAME=$(yq '.jobs.register_step.inputs.model_name' < jobs/pipelines/train_model.yml)
           MODEL_VERSION=$(az ml model list --name $MODEL_NAME --query "[0].version" | bc -l)
           echo "MODEL_NAME=$MODEL_NAME" >> $GITHUB_ENV
           echo "MODEL_VERSION=$MODEL_VERSION" >> $GITHUB_ENV
