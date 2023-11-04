@@ -128,15 +128,14 @@ Schedule data export and drift monitoring:
  ```
  az ml schedule create -f jobs/schedules/data_drift.yml
  ```
-
-### Cleanup
-
+ ### Cleanup
 Delete online endpoint:
  ```
- az ml online-endpoint delete --name credit-card-default-oe -y
+ az ml online-endpoint delete --name credit-card-ep -y
  ```
-
+ 
+### Automate Workflow with CI/CD
+To bring it all together and automate your workflow, we will utilize GitHub Actions. This will enable us to create workflows that automate tasks and seamlessly transition between staging and production environments.
 
 ## Next Steps:
 - Review and Define Alerting and Monitoring Rules Using Application Insights
-- Choose Between GitHub Actions or Azure DevOps for CI/CD

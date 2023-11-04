@@ -58,3 +58,16 @@ resource "null_resource" "compute_resouces" {
 
   depends_on = [azurerm_machine_learning_workspace.aml_ws]
 }
+
+resource "null_resource" "ml_registry" {
+  triggers = {
+    # Generate a unique timestamp to trigger updates
+    timestamp = "${timestamp()}"
+  }
+
+  provisioner "local-exec" {
+    command="az ml registry create --resource-group ${var.resource_group} --name 'mlr${var.workloadIdentifier}3' --file registry.yml"
+  }
+
+  depends_on = [azurerm_machine_learning_workspace.aml_ws]
+}

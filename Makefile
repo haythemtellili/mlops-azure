@@ -6,9 +6,6 @@ create-resource-group:
 create-service-principal:
 	az ad sp create-for-rbac --name $(SERVICE_PRINCIPAL_NAME) --role contributor --scopes /subscriptions/$(SUBSCRIPTION_ID)/resourceGroups/$(RESOURCE_GROUP_NAME) --sdk-auth
 
-create-registry:
-	az ml registry create --resource-group $(RESOURCE_GROUP_NAME) --file registry.yml
-
 init-staging:
 	cd terraform/environments/staging && terraform init
 
@@ -27,6 +24,6 @@ plan-prod:
 apply-prod:
 	cd terraform/environments/prod && terraform apply
 
-run-all: create-resource-group create-service-principal create-registry init-staging apply-staging init-prod apply-prod
+run-all: create-resource-group create-service-principal init-staging apply-staging init-prod apply-prod
 
 
