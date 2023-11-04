@@ -31,3 +31,11 @@ plan-prod:
 apply-prod:
 	cd terraform/environments/prod && terraform apply
 
+# Target: run-bash-script
+run-bash-script:
+	bash upload_data.sh
+
+# Target: run-all (Runs all the targets)
+run-all: create-resource-group create-service-principal init-staging apply-staging init-prod apply-prod run-bash-script
+
+
