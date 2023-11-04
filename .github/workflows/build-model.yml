@@ -36,7 +36,7 @@ jobs:
       - name: Get enviroment from registry
         run: |
           ENVIRONMENT_NAME=$(yq '.name' < environments/train.yml)
-          ENVIRONMENT_VERSION=$(yq '.version' < core/environments/train.yml)
+          ENVIRONMENT_VERSION=$(yq '.version' < environments/train.yml)
           echo "ENVIRONMENT_TRAINING=${ENVIRONMENT_NAME}/versions/${ENVIRONMENT_VERSION}" >> $GITHUB_ENV
 
       - name: Overwrite environment parameter for job
