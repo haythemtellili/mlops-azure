@@ -41,19 +41,19 @@ jobs:
 
       - name: Overwrite environment parameter for job
         run: |
-          yq -i '.jobs.prepare_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
-          yq -i '.jobs.data_quality_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
-          yq -i '.jobs.register_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_model.yml
+          yq -i '.jobs.prepare_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
+          yq -i '.jobs.data_quality_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
+          yq -i '.jobs.register_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
           yq -i '.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' ./jobs/components/sweep_trial.yml
 
       - name: Run pipeline job to train model
         uses: "./.github/templates/run-job"
         with:
-          job_file: ./jobs/pipelines/train_model.yml
+          job_file: ./jobs/pipelines/train_models.yml
 
       - name: Set model name and version
         run: |
-          MODEL_NAME=$(yq '.jobs.register_step.inputs.model_name' < jobs/pipelines/train_model.yml)
+          MODEL_NAME=$(yq '.jobs.register_step.inputs.model_name' < jobs/pipelines/train_models.yml)
           MODEL_VERSION=$(az ml model list --name $MODEL_NAME --query "[0].version" | bc -l)
           echo "MODEL_NAME=$MODEL_NAME" >> $GITHUB_ENV
           echo "MODEL_VERSION=$MODEL_VERSION" >> $GITHUB_ENV
