@@ -82,7 +82,7 @@ jobs:
       primary_metric: validation_f1_score
       goal: maximize
     limits:
-      max_total_trials: 8
+      max_total_trials: 4
       max_concurrent_trials: 4
       timeout: 720
     trial: ../components/sweep_trial.yml
