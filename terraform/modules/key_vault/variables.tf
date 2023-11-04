@@ -8,12 +8,6 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "prefix" {
+variable "name" {
   type = string
-  default = "aml"
-}
-
-variable "postfix" {
-  type = string
-  description = "random string"
 }

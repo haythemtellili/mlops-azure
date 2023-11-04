@@ -8,12 +8,10 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "prefix" {
+variable "name_application_insight" {
   type = string
-  default = "aml"
 }
 
-variable "postfix" {
+variable "name_log_analytics_workspace" {
   type = string
-  description = "random string"
 }

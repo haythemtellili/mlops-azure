@@ -13,7 +13,6 @@ variable "prefix" {
   default = "aml"
 }
 
-variable "postfix" {
+variable "name" {
   type = string
-  description = "random string"
 }

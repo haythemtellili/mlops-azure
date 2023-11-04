@@ -12,7 +12,7 @@ outputs:
     path: azureml://datastores/workspaceblobstore/paths/data
 settings:
   default_datastore: azureml:workspaceblobstore
-  default_compute: azureml:haythem
+  default_compute: azureml:cpu-cluster
   continue_on_step_failure: false
 jobs:
   data_export_step:

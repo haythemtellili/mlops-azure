@@ -1,17 +1,17 @@
 # environment name
-environment = "staging"
+environmentIdentifier = "001"
+
+# Workload Idnetifier
+workloadIdentifier="amlxy6zhyf1"
 
 # Resource group name
-resource_group="aml-terraform-demo"
-
-# Resource name prefix
-prefix="aml"
+resource_group="aml-terraform-rg-test"
 
 # Deployment location
 location="Poland Central"
 
 # Friendly Workspace name
-workspace_display_name="azure-mlops"
+workspace_display_name="azure-mlops-staging"
 
 # name of the cluster 
 cluster_name = "cpu-cluster"
