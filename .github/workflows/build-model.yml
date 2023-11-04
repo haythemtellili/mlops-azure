@@ -44,7 +44,7 @@ jobs:
           yq -i '.jobs.prepare_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
           yq -i '.jobs.data_quality_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
           yq -i '.jobs.register_step.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/pipelines/train_models.yml
-          yq -i '.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' ./jobs/components/sweep_trial.yml
+          yq -i '.environment = "azureml://registries/mlr${{ vars.WORKLOAD_IDENTIFIER }}/environments/${{ env.ENVIRONMENT_TRAINING }}"' jobs/components/sweep_trial.yml
 
       - name: Run pipeline job to train model
         uses: "./.github/templates/run-job"
