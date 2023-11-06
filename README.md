@@ -128,6 +128,37 @@ Schedule data export and drift monitoring:
  ```
  az ml schedule create -f jobs/schedules/data_drift.yml
  ```
+First, to capture custom logs from the online managed endpoint diagnostic settings must be configured to collect logs from the online managed endpoint and send them to a Log Analytics workspace. The following resource available here can be used to learn how to configure this.
+
+Once logs have been collected, to filter and parse inference data from custom logs the following query can be executed in Log Analytics:
+
+```
+ AmlOnlineEndpointConsoleLog
+| where TimeGenerated > ago (1d)
+| where Message has 'online/credit-card-default' and Message has 'InputData'
+| project TimeGenerated, ResponsePayload=split(Message, '|')
+| project TimeGenerated, InputData=parse_json(tostring(ResponsePayload[-1])).data
+| project TimeGenerated, InputData=parse_json(tostring(InputData))
+| mv-expand InputData
+| evaluate bag_unpack(InputData)
+```
+
+To view overall data drift metrics the following query can be executed in Log Analytics:
+```
+traces
+| where message has 'credit-card-default' and message has 'OverallDriftMetrics'
+| project timestamp, data=parse_json(tostring(message)).data
+| evaluate bag_unpack(data)
+```
+To view feature level data drift metrics the following query can be executed in Log Analytics:
+```
+traces
+| where message has 'credit-card-default' and message has 'FeatureDriftMetrics'
+| project timestamp, data=parse_json(tostring(message)).data
+| mv-expand data
+| evaluate bag_unpack(data)
+```
+
  ### Cleanup
 Delete online endpoint:
  ```
